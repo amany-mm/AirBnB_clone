@@ -1,5 +1,5 @@
 # AirBnB clone - The console
-![airbnb-project](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240514%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240514T181956Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5151d9fab02ac029d61a6c2fc05396d2b9fa3f9e7a60105ca396c63841e5bf94)
+![airbnb-project](https://github.com/amany-mm/AirBnB_clone/blob/master/images/hbnb-logo.png)
 
 
 ## Description of the project
@@ -18,7 +18,7 @@ The console will perform the following tasks:
 
 
 ## Diagram overview
-![console-diagram](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240515T100347Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a0a800fd30f7e306cc0112afa9f76ff2df6bf5ef79fb8107a317ebc59cbbeefa)
+![console-diagram](https://github.com/amany-mm/AirBnB_clone/blob/master/images/hbnb-console-diagram.png)
 
 
 ## Execution
