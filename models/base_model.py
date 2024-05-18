@@ -1,32 +1,55 @@
-""" Base model module to defines all common attributes
-and methods for other classes
-"""
-import uuid
+#!/usr/bin/python3
+""" BaseModel that defines all common attributes and
+methods for other classes. """
+from uuid import uuid4
 from datetime import datetime
 
 
 class BaseModel:
-    """ defines all common attributes and methods for other classes """
-    def __init__(self) -> None:
-        """ public instance attributes """
-        self.id = str(uuid.uuid4())
+    """ BaseModel of models """
+
+    def __init__(self, **kwargs):
+        """ new object instantiation
+        kwargs: key/values of attributes
+        """
+        self.id = str(uuid4())
+
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
+        if len(kwargs) > 0:
+
+            for key, value in kwargs.items():
+                if key == "created_at":
+                    self.created_at = datetime.strptime(value,
+                                                        '%Y-%m-%dT%H:%M:%S.%f')
+
+                elif key == "updated_at":
+                    self.updated_at = datetime.strptime(value,
+                                                        '%Y-%m-%dT%H:%M:%S.%f')
+
+                else:
+                    if key != "__class__":
+                        setattr(self, key, value)
+
     def __str__(self):
-        """ object string format """
-        return ("[{}] ({}) {}")\
-            .format(self.__class__.__name__, self.id, self.__dict__)
+        """ Returns string object representation. """
+
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__,
+            self.id,
+            self.__dict__)
 
     def save(self):
-        """ update updated_at with the current datetime. """
+        """ Updates attr updated_at with current time. """
+
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """ instance attributes set will be returned, class name and
-        iso format dates. """
+        """ Returns key and values instance __dict__. """
+
         _dict = self.__dict__.copy()
         _dict["__class__"] = self.__class__.__name__
-        _dict["created_at"] = _dict["created_at"].isoformat()
-        _dict["updated_at"] = _dict["updated_at"].isoformat()
+        _dict["created_at"] = self.created_at.isoformat()
+        _dict["updated_at"] = self.updated_at.isoformat()
         return _dict
