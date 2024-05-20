@@ -15,8 +15,8 @@ from models.review import Review
 
 
 _classes = {"BaseModel": BaseModel, "User": User, "State": State,
-            "City": City, "Amenity": Amenity,
-            "Place": Place, "Review": Review}
+            "City": City, "Amenity": Amenity, "Place": Place,
+            "Review": Review}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -119,26 +119,26 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_all(self, args):
+    def do_all(self, line):
         """Prints all string representation of all instances
         based or not on the class name. Ex: $ all BaseModel or $ all"""
 
-        new_object = models.storage.all()
-        list_objects = []
+        if line != "":
+            words = line.split(' ')
 
-        if args not in _classes:
-            print("** class doesn't exist **")
-            return
-        if args in self.classes:
-            for key, value in new_object.items():
-                if args in key:
+            if words[0] not in models.storage.class_dict:
+                print("** class doesn't exist **")
 
-                    toke_key = key.split(".")
+            else:
+                _list = [str(obj) for pattern, obj in models.storage.all().items()
+                         if type(obj).__name__ == words[0]]
+                print(_list)
 
-                    key_new = "[" + toke_key[0] + "]"\
-                        + " (" + toke_key[1] + ")"
-                    list_objects.append(key_new + " " + str(value))
-                    print(list_objects)
+        else:
+            f_lst = [str(obj)
+                     for pattern, obj in models.storage.all().items()]
+
+            print(f_lst)
 
     def do_update(self, args):
         """Updates an instance based on the class name and id by adding or
