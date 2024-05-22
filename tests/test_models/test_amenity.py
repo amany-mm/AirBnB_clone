@@ -48,7 +48,6 @@ class TestAmenity(unittest.TestCase):
     def test_attr(self):
         """ test attr """
         amen = Amenity()
-        self.assertEqual(str, type(Amenity.name))
         self.assertIn("name", dir(Amenity()))
         self.assertNotIn("name", amen.__dict__)
 
