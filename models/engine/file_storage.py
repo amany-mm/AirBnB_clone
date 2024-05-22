@@ -13,7 +13,8 @@ from models.amenity import Amenity
 
 
 class FileStorage:
-    """ Serializes and deserialize instances to JSON """
+    """Serializes and deserialize instances to JSON"""
+
     __file_path = 'file.json'
     __objects = {}
     class_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
@@ -21,23 +22,20 @@ class FileStorage:
                   "Review": Review,
                   }
 
-    def __init__(self):
-        """ int
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
-
     def all(self):
-        """ returns a dict of all objects."""
+        """ returns a dict of all objects.
+        """
         return self.__objects
 
     def new(self, obj):
-        """ sets in __objects the obj with key <obj class name>.id """
+        """ sets in __objects the obj with key <obj class name>.id
+        """
         key = obj.__class__.__name__ + "." + obj.id
         self.__objects[key] = obj
 
-    def save(self):
-        """ serializes __objects to the JSON file (path: __file_path) """
+    def save(self, obj=None):
+        """ serializes __objects to the JSON file (path: __file_path)
+        """
         _dict = {}
         with open(self.__file_path, 'w') as f:
             for obj in self.__objects.values():
@@ -46,10 +44,8 @@ class FileStorage:
             json.dump(_dict, f)
 
     def reload(self):
-        '''deserializes the JSON file to __objects
-        (only if the JSON file (__file_path) exists ;
-        otherwise, do nothing.
-        If the file doesn’t exist, no exception should be raised)'''
+        """deserializes the JSON file to __objects
+        """
         try:
             with open(self.__file_path, 'r') as f:
                 new_object = json.load(f)
